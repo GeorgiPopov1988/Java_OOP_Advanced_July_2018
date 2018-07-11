@@ -1,3 +1,5 @@
+package generics.lab;
+
 import java.util.ArrayDeque;
 
 public class Jar<T> {

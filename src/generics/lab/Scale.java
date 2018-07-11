@@ -1,3 +1,5 @@
+package generics.lab;
+
 public class Scale<T extends Comparable<T>> {
  
  private T left;

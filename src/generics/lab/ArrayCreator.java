@@ -1,3 +1,5 @@
+package generics.lab;
+
 import java.lang.reflect.Array;
 
 public class ArrayCreator<T> {
