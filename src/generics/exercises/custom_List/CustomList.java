@@ -17,4 +17,6 @@ public interface CustomList<T extends Comparable<T>>{
  T getMin();
  
  Iterable<T> getElements();
+ 
+ void sort();
 }

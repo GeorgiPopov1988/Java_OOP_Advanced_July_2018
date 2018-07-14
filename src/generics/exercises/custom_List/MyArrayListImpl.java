@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MyArrayList <T extends Comparable<T>> implements CustomList<T>{
+public class MyArrayListImpl<T extends Comparable<T>> implements CustomList<T>{
  
  private List<T> elements;
  
- public MyArrayList() {
+ public MyArrayListImpl() {
   this.elements = new ArrayList<>();
  }
  
@@ -76,5 +76,10 @@ public class MyArrayList <T extends Comparable<T>> implements CustomList<T>{
  @Override
  public Iterable<T> getElements() {
   return this.elements;
+ }
+ 
+ @Override
+ public void sort() {
+  this.elements.sort((e1, e2) -> e1.compareTo(e2));
  }
 }

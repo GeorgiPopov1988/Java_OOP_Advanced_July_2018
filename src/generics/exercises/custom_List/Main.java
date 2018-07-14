@@ -8,7 +8,7 @@ public class Main {
  public static void main(String[] args) throws IOException {
   BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   
-  CustomList<String> list = new MyArrayList<>();
+  CustomList<String> list = new MyArrayListImpl<>();
   
   String inLine;
   
@@ -38,7 +38,7 @@ public class Main {
     break;
    case "Remove":
     int index = Integer.parseInt(inTokens[1]);
-    System.out.println(list.remove(index));
+    list.remove(index);
     break;
    case "Contains":
     element = inTokens[1];
@@ -64,6 +64,8 @@ public class Main {
      System.out.println(currentElement);
     }
     break;
+   case "Sort":
+    list.sort();
   }
  }
 }
