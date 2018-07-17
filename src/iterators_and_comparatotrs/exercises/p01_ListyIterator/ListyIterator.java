@@ -1,6 +1,8 @@
 package iterators_and_comparatotrs.exercises.p01_ListyIterator;
 
-public class ListyIterator<T> {
+import java.util.Iterator;
+
+public class ListyIterator<T> implements Iterable<T> {
  private T[] items;
  private int index;
  
@@ -32,4 +34,26 @@ public class ListyIterator<T> {
   }
  }
  
+ @Override
+ public Iterator<T> iterator() {
+  return new MyIterator();
+ }
+ 
+ private final class MyIterator implements Iterator<T> {
+  private int index;
+  
+  private MyIterator() {
+   this.index = 0;
+  }
+  
+  @Override
+  public boolean hasNext() {
+   return this.index < items.length;
+  }
+ 
+  @Override
+  public T next() {
+   return items[index++];
+  }
+ }
 }

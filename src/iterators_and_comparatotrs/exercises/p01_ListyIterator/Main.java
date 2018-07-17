@@ -9,19 +9,19 @@ public class Main {
  public static void main(String[] args) throws IOException {
   BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
   ListyIterator<String> listyIterator = null;
- 
+  
   while (true) {
    String inLine = reader.readLine();
- 
+   
    if ("END".equals(inLine)) {
     break;
    }
- 
+   
    String[] inTokens = inLine.split("\\s+");
    
    switch (inTokens[0]) {
     case "Create":
-     String [] arguments = Arrays.stream(inTokens).skip(1).toArray(String[]::new);
+     String[] arguments = Arrays.stream(inTokens).skip(1).toArray(String[]::new);
      listyIterator = new ListyIterator<>(arguments);
      break;
     case "HasNext":
@@ -33,10 +33,12 @@ public class Main {
     case "Print":
      listyIterator.print();
      break;
+    case "PrintAll":
+     System.out.println(String.join(" ", listyIterator));
+     break;
     
    }
    
   }
-  
  }
 }
