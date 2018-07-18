@@ -1,4 +1,4 @@
-package iterators_and_comparatotrs.exercises.p01_ListyIterator;
+package iterators_and_comparatotrs.exercises.p01_Listy_iterator;
 
 import java.util.Iterator;
 
