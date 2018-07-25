@@ -34,7 +34,7 @@ public class Tracker {
   @Author(name = "Svetlana Popova")
   public void method() {
   
-    System.out.println("Test method");
+    System.out.println("Main method");
   }
   
 }
