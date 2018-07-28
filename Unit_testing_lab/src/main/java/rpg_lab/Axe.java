@@ -1,27 +1,38 @@
-public class Axe {
+package rpg_lab;
+
+import interfaces.Target;
+import interfaces.Weapon;
+
+public class Axe implements Weapon {
 
     private int attackPoints;
+
     private int durabilityPoints;
 
-    public Axe(int attack, int durability) {
+    public Axe (int attack, int durability) {
+
         this.attackPoints = attack;
         this.durabilityPoints = durability;
     }
 
-    public int getAttackPoints() {
+    public int getAttackPoints ( ) {
+
         return this.attackPoints;
     }
 
-    public int getDurabilityPoints() {
+    public int getDurabilityPoints ( ) {
+
         return this.durabilityPoints;
     }
 
-    public void attack(Dummy target) {
+    public void attack (Target target) {
+
         if (this.durabilityPoints <= 0) {
-            throw new IllegalStateException("Axe is broken.");
+            throw new IllegalStateException("rpg_lab.Axe is broken.");
         }
 
         target.takeAttack(this.attackPoints);
         this.durabilityPoints -= 1;
     }
+
 }
