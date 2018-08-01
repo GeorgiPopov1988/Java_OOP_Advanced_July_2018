@@ -53,7 +53,7 @@ public class Engine implements Runnable {
             String[] args = input.split("\\s+");
             this.interpredcommand(args, args[0]);
 
-            this.blobRepository.findAll().forEach(blob -> blob.update());
+            this.subject.notifyAllObservers();
         }
     }
 
