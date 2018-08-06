@@ -5,7 +5,7 @@ import hell.interfaces.Item;
 
 public final class ItemFactory {
 
-    public ItemFactory () {
+    private ItemFactory () {
 
     }
 
