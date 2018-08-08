@@ -14,14 +14,16 @@ public class ModuleContainer implements Container {
     private Map<Integer, EnergyModule> energyModules;
     private Map<Integer, AbsorbingModule> absorbingModules;
 
-    public ModuleContainer(int moduleCapacity) {
+    public ModuleContainer (int moduleCapacity) {
+
         this.moduleCapacity = moduleCapacity;
         this.modulesByInput = new LinkedList<>();
         this.energyModules = new LinkedHashMap<Integer, EnergyModule>();
         this.absorbingModules = new LinkedHashMap<Integer, AbsorbingModule>();
     }
 
-    public void addEnergyModule(EnergyModule energyModule) {
+    public void addEnergyModule (EnergyModule energyModule) {
+
         if (energyModule == null) {
             throw new IllegalArgumentException();
         }
@@ -34,7 +36,8 @@ public class ModuleContainer implements Container {
         this.modulesByInput.addLast(energyModule);
     }
 
-    public void addAbsorbingModule(AbsorbingModule absorbingModule) {
+    public void addAbsorbingModule (AbsorbingModule absorbingModule) {
+
         if (absorbingModule == null) {
             throw new IllegalArgumentException();
         }
@@ -48,27 +51,30 @@ public class ModuleContainer implements Container {
     }
 
     @Override
-    public long getTotalEnergyOutput() {
+    public long getTotalEnergyOutput () {
+
         return this.energyModules.values().stream()
-                .mapToLong(EnergyModule::getEnergyOutput)
+                .mapToLong(EnergyModule :: getEnergyOutput)
                 .sum();
     }
 
     @Override
-    public long getTotalHeatAbsorbing() {
+    public long getTotalHeatAbsorbing () {
+
         return this.absorbingModules.values().stream()
-                .mapToLong(AbsorbingModule::getHeatAbsorbing)
+                .mapToLong(AbsorbingModule :: getHeatAbsorbing)
                 .sum();
     }
 
-    private void removeOldestModule() {
+    private void removeOldestModule () {
+
         int removeId = this.modulesByInput.removeFirst().getId();
 
-        if(this.energyModules.containsKey(removeId)) {
+        if (this.energyModules.containsKey(removeId)) {
             this.energyModules.remove(removeId);
         }
 
-        if(this.absorbingModules.containsKey(removeId)) {
+        if (this.absorbingModules.containsKey(removeId)) {
             this.absorbingModules.remove(removeId);
         }
     }

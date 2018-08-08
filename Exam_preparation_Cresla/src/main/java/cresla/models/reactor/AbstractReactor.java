@@ -10,29 +10,21 @@ import cresla.interfaces.Reactor;
 import java.lang.reflect.Field;
 import java.util.LinkedList;
 
-public abstract class BaseReactor implements Reactor {
+public abstract class AbstractReactor implements Reactor {
 
     private int id;
     private Container container;
 
-    public BaseReactor (int id, Container container) {
+    AbstractReactor (int id, Container container) {
 
         this.id = id;
         this.container = container;
     }
 
-    @Override
-    public long getTotalEnergyOutput () {
+    Container getContainer () {
 
-        return this.container.getTotalEnergyOutput();
+        return this.container;
     }
-
-    @Override
-    public long getTotalHeatAbsorbing () {
-
-        return this.container.getTotalHeatAbsorbing();
-    }
-
 
     @Override
     @SuppressWarnings("unchecked")
@@ -51,18 +43,25 @@ public abstract class BaseReactor implements Reactor {
     }
 
     @Override
-    public void addEnergyModule (EnergyModule energyModule) {
+    public abstract long getTotalEnergyOutput();
 
+    @Override
+    public abstract long getTotalHeatAbsorbing();
+
+    @Override
+    public void addEnergyModule (EnergyModule energyModule) {
+        this.container.addEnergyModule(energyModule);
     }
 
     @Override
     public void addAbsorbingModule (AbsorbingModule absorbingModule) {
-
+        this.container.addAbsorbingModule(absorbingModule);
     }
 
     @Override
     public int getId () {
 
-        return 0;
+        return this.id;
     }
+
 }
