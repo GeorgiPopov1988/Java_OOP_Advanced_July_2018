@@ -1,6 +1,6 @@
 package hell.entities.heroes;
 
-import hell.annotations.ItemCollection;
+import hell.entities.miscellaneous.ItemCollection;
 import hell.interfaces.Hero;
 import hell.interfaces.Inventory;
 import hell.interfaces.Item;

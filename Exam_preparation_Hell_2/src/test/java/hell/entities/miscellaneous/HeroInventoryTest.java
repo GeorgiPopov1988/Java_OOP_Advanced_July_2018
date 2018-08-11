@@ -1,13 +1,20 @@
-package hell;
+package hell.entities.miscellaneous;
 
 import hell.interfaces.Inventory;
 import hell.interfaces.Item;
+import hell.interfaces.Recipe;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class HeroInventoryTest {
+
 
 
     private static final int VALUE = Integer.MAX_VALUE;
@@ -30,11 +37,6 @@ public class HeroInventoryTest {
         this.inventory = new HeroInventory();
     }
 
-//    private void addStats() {
-//
-//        this.inventory.addCommonItem(createMockedCommonItem());
-//    }
-
     private Item createMockedCommonItem () {
 
         Item commonItem = Mockito.mock(Item.class);
@@ -48,7 +50,7 @@ public class HeroInventoryTest {
         return commonItem;
     }
 
-    private void addMockedCommonItems () {
+    private void seedCommonItems () {
 
         Item commonItem1 = this.createMockedCommonItem();
         Mockito.when(commonItem1.getName()).thenReturn("CommonItem1");
@@ -64,10 +66,20 @@ public class HeroInventoryTest {
         this.inventory.addCommonItem(commonItem3);
     }
 
+    private void seedRecipeItem () {
+        Recipe recipeMock = Mockito.mock(Recipe.class);
+        List<String> requiredItems = new ArrayList<>();
+        requiredItems.add("CommonItem1");
+        requiredItems.add("CommonItem2");
+        requiredItems.add("CommonItem4");
+        Mockito.when(recipeMock.getRequiredItems()).thenReturn(requiredItems);
+        this.inventory.addRecipeItem(recipeMock);
+    }
+
     @Test
     public void getTotalStrengthBonus () {
         //  Arrange
-        this.addMockedCommonItems();
+        this.seedCommonItems();
 
         //  Act
         long actualTotalStrengthBonusValue = this.inventory.getTotalStrengthBonus();
@@ -80,7 +92,7 @@ public class HeroInventoryTest {
     @Test
     public void getTotalAgilityBonus () {
         //  Arrange
-        this.addMockedCommonItems();
+        this.seedCommonItems();
 
         //  Act
         long actualTotalAgilityBonusValue = this.inventory.getTotalAgilityBonus();
@@ -93,7 +105,7 @@ public class HeroInventoryTest {
     @Test
     public void getTotalIntelligenceBonus () {
         //  Arrange
-        this.addMockedCommonItems();
+        this.seedCommonItems();
 
         //  Act
         long actualTotalIntelligenceBonusValue = this.inventory.getTotalIntelligenceBonus();
@@ -106,7 +118,7 @@ public class HeroInventoryTest {
     @Test
     public void getTotalHitPointsBonus () {
         //  Arrange
-        this.addMockedCommonItems();
+        this.seedCommonItems();
 
         //  Act
         long actualTotalHitPointsBonusValue = this.inventory.getTotalHitPointsBonus();
@@ -119,7 +131,7 @@ public class HeroInventoryTest {
     @Test
     public void getTotalDamageBonus () {
         //  Arrange
-        this.addMockedCommonItems();
+        this.seedCommonItems();
 
         //  Act
         long actualTotalDamageBonusValue = this.inventory.getTotalDamageBonus();
@@ -131,7 +143,29 @@ public class HeroInventoryTest {
 
     @Test
     public void addCommonItem () {
+        // Arrange
+        this.seedCommonItems();
+        this.seedRecipeItem();
+        Item commonItemMock4 = Mockito.mock(Item.class);
+        Mockito.when(commonItemMock4.getName()).thenReturn("CommonItem4");
 
+        // Act
+        this.inventory.addCommonItem(commonItemMock4);
+        int actualCountOfCommonItems = 0;
+
+        try {
+            Field commonItemsField = this.inventory.getClass().getDeclaredField("commonItems");
+            commonItemsField.setAccessible(true);
+            Map<String, Item> commonItemsMap = (Map<String, Item>) commonItemsField.get(this.inventory);
+            actualCountOfCommonItems = commonItemsMap.size();
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        int expectedCountOfCommonItems = 2;
+
+        // Assert
+        Assert.assertEquals(expectedCountOfCommonItems, actualCountOfCommonItems);
     }
 
     @Test

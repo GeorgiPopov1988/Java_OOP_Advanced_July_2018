@@ -5,6 +5,7 @@ import hell.entities.heroes.Barbarian;
 import hell.entities.heroes.Wizard;
 import hell.entities.items.CommonItem;
 import hell.entities.items.RecipeItem;
+import hell.entities.miscellaneous.HeroInventory;
 import hell.interfaces.*;
 import hell.io.ConsoleInputReader;
 import hell.io.ConsoleOutputWriter;
