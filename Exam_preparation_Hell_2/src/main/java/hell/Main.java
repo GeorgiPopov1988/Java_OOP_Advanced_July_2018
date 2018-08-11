@@ -5,7 +5,6 @@ import hell.entities.heroes.Barbarian;
 import hell.entities.heroes.Wizard;
 import hell.entities.items.CommonItem;
 import hell.entities.items.RecipeItem;
-import hell.entities.miscellaneous.HeroInventory;
 import hell.interfaces.*;
 import hell.io.ConsoleInputReader;
 import hell.io.ConsoleOutputWriter;
@@ -67,7 +66,7 @@ public class Main {
                                      commonItem.getName(),
                                      hero.getName());
             case "Recipe":
-                
+
                 //•	Recipe {name} {heroName} {strengthBonus} {agilityBonus} {intelligenceBonus} {hitpointsBonus} {damageBonus} {requiredItem1} {requiredItem2}. . .
                 hero = heroes.get(arguments[1]);
                 Recipe recipeItem = createRecipe(arguments);

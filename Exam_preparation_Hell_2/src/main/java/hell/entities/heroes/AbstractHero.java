@@ -1,6 +1,6 @@
 package hell.entities.heroes;
 
-import hell.entities.miscellaneous.annotations.ItemCollection;
+import hell.annotations.ItemCollection;
 import hell.interfaces.Hero;
 import hell.interfaces.Inventory;
 import hell.interfaces.Item;
@@ -8,7 +8,6 @@ import hell.interfaces.Recipe;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -73,6 +72,7 @@ public abstract class AbstractHero implements Hero {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Collection<Item> getItems () {
         // TODO with reflection
         Collection<Item> items = null;

@@ -1,7 +1,7 @@
-package hell.entities.miscellaneous;
+package hell;
 
 import hell.entities.items.CommonItem;
-import hell.entities.miscellaneous.annotations.ItemCollection;
+import hell.annotations.ItemCollection;
 import hell.interfaces.Inventory;
 import hell.interfaces.Item;
 import hell.interfaces.Recipe;
@@ -15,7 +15,7 @@ public class HeroInventory implements Inventory {
 
     private Map<String, Recipe> recipeItems;
 
-    public HeroInventory () {
+    HeroInventory () {
 
         this.commonItems = new LinkedHashMap<>();
         this.recipeItems = new LinkedHashMap<>();
